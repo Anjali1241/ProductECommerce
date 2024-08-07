@@ -5,7 +5,6 @@ import Hero from '../../components/Hero';
 function HomePage() {
   return (
     <div>
-      {/* Adjust the margin to accommodate the sidebar width */}
       <main style={{ marginLeft: 250, padding: '20px' }}>
         <Sidebar />
         <Hero />

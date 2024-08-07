@@ -4,7 +4,7 @@ function Hero() {
   return (
     <div
       id="default-carousel"
-      className="relative w-full"
+      className="relative w-full bg-slate-950"
       data-carousel="slide"
     >
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
