@@ -1,13 +1,11 @@
 import React from 'react';
-import Sidebar from '../../components/Sidebar';
-import Hero from '../../components/Hero';
+import Category from '../../components/Category';
 
 function HomePage() {
   return (
     <div>
       <main style={{ marginLeft: 250, padding: '20px' }}>
-        <Sidebar />
-        <Hero />
+        <Category />
       </main>
     </div>
   );
