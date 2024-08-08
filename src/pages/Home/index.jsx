@@ -8,6 +8,7 @@ function HomePage() {
       <main style={{ marginLeft: 250, padding: '20px' }}>
         <Sidebar />
         <Hero />
+        <p>Helllo</p>
       </main>
     </div>
   );
