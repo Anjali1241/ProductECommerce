@@ -6,8 +6,13 @@ import HeadphonesIcon from '@mui/icons-material/Headphones';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import CategoryListItem from './CategoryListItem';
+import { useRef } from 'react';
+import { useDraggable } from 'react-use-draggable-scroll';
 
 function Category() {
+  const ref = useRef(); // We will use React useRef hook to reference the wrapping div:
+  const { events } = useDraggable(ref);
+
   const categories = [
     {
       icon: <PhoneIphoneIcon />,
@@ -22,8 +27,16 @@ function Category() {
       name: 'SmartWatch',
     },
     {
-      icon: <PhoneIphoneIcon />,
-      name: 'Phones',
+      icon: <CameraAltIcon />,
+      name: 'Camera',
+    },
+    {
+      icon: <HeadphonesIcon />,
+      name: 'Headphones',
+    },
+    {
+      icon: <SportsEsportsIcon />,
+      name: 'Gaming',
     },
     {
       icon: <CameraAltIcon />,
@@ -45,7 +58,14 @@ function Category() {
         Categories
       </h1>
 
-      <div className='flex flex-wrap'>
+      <h1 className="text-3xl font-semibold my-5">Browse By Category</h1>
+
+      <div
+        className="flex w-[80%] space-x-3 overflow-x-scroll scrollbar-hide mt-5"
+        style={{ scrollbarWidth: 'none' }}
+        {...events}
+        ref={ref}
+      >
         {categories.map((category) => {
           return (
             <CategoryListItem
