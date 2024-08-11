@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar';
 import Hero from '../../components/Hero';
 import Offers from '../../components/Offers';
 import Header from '../../components/Header';
+import Perks from '../../components/Perks';
 
 function HomePage() {
   return (
@@ -12,7 +13,7 @@ function HomePage() {
         <Header />
         <Sidebar />
         <Hero />
-        <p>Helllo</p>
+        <Perks/>
       </main>
     </div>
   );
