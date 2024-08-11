@@ -7,15 +7,15 @@ function Hero() {
     <Carousel>
       <div>
         <img src="/Hero/slider_1.png" />
-        <p className="legend">Legend 1</p>
+        <p className="legend">IPhone</p>
       </div>
       <div>
         <img src="/Hero/slider_2.jpg" />
-        <p className="legend">Legend 2</p>
+        <p className="legend">IPhone 15 pro max</p>
       </div>
       <div>
         <img src="/Hero/slider_1.png" />
-        <p className="legend">Legend 3</p>
+        <p className="legend">IPhone</p>
       </div>
     </Carousel>
   );
