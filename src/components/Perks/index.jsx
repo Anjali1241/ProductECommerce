@@ -23,23 +23,30 @@ const perks = [
 
 function Perks() {
   return (
-    <div className="flex justify-center items-center my-10">
-      {perks.map((perk) => {
-        return (
+    <>
+      <h1 className="text-[#DB4444] border-l-8 pl-2 mt-16 rounded-t-md rounded-b-md border-l-[#DB4444] text-xl">
+        Perks
+      </h1>
+
+      <h1 className="text-3xl font-semibold my-5">Our Services</h1>
+      <div className="flex justify-center items-center mt-16 space-x-8">
+        {perks.map((perk) => (
           <div
             key={perk.title}
-            className="flex flex-col items-center [&>*]:m-1 space-x-14"
+            className="flex flex-col justify-center items-center text-center p-4 "
           >
-            <div className="text-3xl bg-slate-600 rounded-full p-5">
-              <span className="text-white rounded-full p-3">{perk.icon}</span>
+            <div className="p-4 bg-slate-400 rounded-full mb-3">
+              <div className="bg-[#2F2E30] rounded-full p-4">
+                <span className="text-white text-3xl">{perk.icon}</span>
+              </div>
             </div>
 
-            <h3 className="text-xl font-bold">{perk.title}</h3>
-            <p>{perk.description}</p>
+            <h3 className="text-xl font-bold mb-2">{perk.title}</h3>
+            <p className="text-gray-600">{perk.description}</p>
           </div>
-        );
-      })}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 

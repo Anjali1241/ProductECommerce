@@ -5,9 +5,9 @@ import WatchIcon from '@mui/icons-material/Watch';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import CategoryListItem from './CategoryListItem';
 import { useRef } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
+import CategoryListItem from './CategoryListItem';
 
 function Category() {
   const ref = useRef(); // We will use React useRef hook to reference the wrapping div:
@@ -61,7 +61,7 @@ function Category() {
       <h1 className="text-3xl font-semibold my-5">Browse By Category</h1>
 
       <div
-        className="flex w-[80%] space-x-3 overflow-x-scroll scrollbar-hide mt-5"
+        className="flex w-full space-x-3 overflow-x-scroll scrollbar-hide mt-5"
         style={{ scrollbarWidth: 'none' }}
         {...events}
         ref={ref}
