@@ -22,9 +22,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        eCommerce
-      </Link>{' '}
+      eCommerce
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -33,9 +31,15 @@ function Copyright(props) {
 function Login() {
   const defaultTheme = createTheme();
   return (
-    <ThemeProvider theme={defaultTheme}>
+
+    <ThemeProvider theme={defaultTheme} sx={{ backgroundImage: "linear-gradient(black, white)" }}>
+
+
       {/* <ToastContainer /> */}
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        border: "2px solid",
+        margin: "5% auto"
+      }} className='bg-gradient-to-t from-gray-500 via-gray-400 to-gray-200'>
         <CssBaseline />
         <Box
           sx={{
@@ -45,11 +49,11 @@ function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'black' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            Login your account
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
@@ -60,6 +64,9 @@ function Login() {
               label="Username"
               id="userName"
               autoComplete="given-name"
+              sx={{
+                marginBottom: 2,
+              }}
             />
             <TextField
               name="password"
@@ -69,7 +76,9 @@ function Login() {
               label="Password"
               autoComplete="new-password"
               type="password"
-
+              sx={{
+                marginBottom: 2,
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -79,18 +88,18 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
             >
               Log In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
+              <Grid item xs >
+                <Link href="#" variant="body2" sx={{ color: "black" }}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/" variant="body2">
+                <Link href="/" variant="body2" sx={{ color: "black" }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
