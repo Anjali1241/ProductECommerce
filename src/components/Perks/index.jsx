@@ -36,7 +36,7 @@ function Perks() {
             className="flex flex-col justify-center items-center text-center p-4 "
           >
             <div className="p-4 bg-slate-400 rounded-full mb-3">
-              <div className="bg-[#2F2E30] rounded-full p-4">
+              <div className="hover:animate-ping duration-[1000] bg-[#2F2E30] rounded-full p-4">
                 <span className="text-white text-3xl">{perk.icon}</span>
               </div>
             </div>
