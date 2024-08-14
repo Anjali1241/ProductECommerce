@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,8 +12,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
 
@@ -31,11 +28,7 @@ function Copyright(props) {
 function Login() {
   const defaultTheme = createTheme();
   return (
-
     <ThemeProvider theme={defaultTheme} sx={{ backgroundImage: "linear-gradient(black, white)" }}>
-
-
-      {/* <ToastContainer /> */}
       <Container component="main" maxWidth="xs" sx={{
         border: "2px solid",
         margin: "5% auto"
