@@ -12,7 +12,7 @@ export default function Sidebar() {
         width: 250,
         height: 'calc(100vh - 64px)',
         position: 'fixed',
-        top: 99,
+        top: 145,
         left: 0,
         backgroundColor: 'background.paper',
         zIndex: 1200,
