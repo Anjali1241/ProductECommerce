@@ -9,7 +9,7 @@ import Perks from '../../components/Perks';
 function HomePage() {
   return (
     <div>
-      <main style={{ marginLeft: 250, padding: '20px' }}>
+      <main style={{ marginLeft: 250 }}>
         <Offers />
         <Header />
         <Sidebar />
