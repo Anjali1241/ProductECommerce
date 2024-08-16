@@ -5,7 +5,6 @@ import Offers from '../../components/Offers';
 import Header from '../../components/Header';
 import Category from '../../components/Categories';
 import Perks from '../../components/Perks';
-import Category from '../../components/Category';
 import Footer from '../../components/Footer';
 
 function HomePage() {
