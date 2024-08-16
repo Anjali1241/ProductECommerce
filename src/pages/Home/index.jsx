@@ -4,7 +4,6 @@ import Hero from '../../components/Hero';
 import Offers from '../../components/Offers';
 import Header from '../../components/Header';
 import Category from '../../components/Category';
-import Footer from '../../components/Footer';
 
 function HomePage() {
   return (
@@ -15,7 +14,6 @@ function HomePage() {
         <Sidebar />
         <Hero />
         <Category />
-        <Footer />
       </main>
     </div>
   );
