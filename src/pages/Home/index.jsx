@@ -9,9 +9,11 @@ import Perks from '../../components/Perks';
 function HomePage() {
   return (
     <div>
-      <main style={{ marginLeft: 250 }}>
+      <div className='sticky top-0 z-10'>
         <Offers />
         <Header />
+      </div>
+      <main style={{ marginLeft: 250 }}>
         <Sidebar />
         <Hero />
         <Category />
