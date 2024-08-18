@@ -45,7 +45,7 @@ function SignUp() {
       <Container component="main" maxWidth="xs" sx={{
         border: "2px solid",
         margin: "5% auto"
-      }} className='bg-gradient-to-t from-gray-500 via-gray-400 to-gray-200'>
+      }}>
         <CssBaseline />
         <Box
           sx={{
