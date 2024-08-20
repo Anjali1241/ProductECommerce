@@ -1,4 +1,3 @@
-import React from 'react';
 import Sidebar from '../../components/Sidebar';
 import Hero from '../../components/Hero';
 import Offers from '../../components/Offers';
@@ -9,9 +8,11 @@ import Perks from '../../components/Perks';
 function HomePage() {
   return (
     <div>
-      <main style={{ marginLeft: 250 }}>
+      <div className="sticky top-0 z-10">
         <Offers />
         <Header />
+      </div>
+      <main style={{ marginLeft: 250 }}>
         <Sidebar />
         <Hero />
         <Category />

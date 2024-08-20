@@ -14,10 +14,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
-
-
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {'Copyright © '}
       eCommerce
       {new Date().getFullYear()}
@@ -28,11 +31,19 @@ function Copyright(props) {
 function Login() {
   const defaultTheme = createTheme();
   return (
-    <ThemeProvider theme={defaultTheme} sx={{ backgroundImage: "linear-gradient(black, white)" }}>
-      <Container component="main" maxWidth="xs" sx={{
-        border: "2px solid",
-        margin: "5% auto"
-      }} className='bg-gradient-to-t from-gray-500 via-gray-400 to-gray-200'>
+    <ThemeProvider
+      theme={defaultTheme}
+      sx={{ backgroundImage: 'linear-gradient(black, white)' }}
+    >
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          border: '2px solid',
+          margin: '5% auto',
+        }}
+        className="bg-gradient-to-t from-gray-500 via-gray-400 to-gray-200"
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -81,18 +92,18 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
+              sx={{ mt: 3, mb: 2, backgroundColor: 'black' }}
             >
               Log In
             </Button>
             <Grid container>
-              <Grid item xs >
-                <Link href="#" variant="body2" sx={{ color: "black" }}>
+              <Grid item xs>
+                <Link href="#" variant="body2" sx={{ color: 'black' }}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/" variant="body2" sx={{ color: "black" }}>
+                <Link href="/" variant="body2" sx={{ color: 'black' }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -102,7 +113,7 @@ function Login() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
-  )
+  );
 }
 
 export default Login;
