@@ -16,7 +16,6 @@ export default function Sidebar() {
         backgroundColor: 'background.paper',
         zIndex: 1200,
         overflowY: 'auto',
-        borderRight: '2px solid #DCDCDC',
       }}
       role="presentation"
     >
