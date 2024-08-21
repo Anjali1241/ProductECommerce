@@ -1,4 +1,3 @@
-import React from 'react';
 import Sidebar from '../../components/Sidebar';
 import Hero from '../../components/Hero';
 import Offers from '../../components/Offers';
@@ -10,7 +9,7 @@ import Footer from '../../components/Footer';
 function HomePage() {
   return (
     <div>
-      <div className='sticky top-0 z-10'>
+      <div className="sticky top-0 z-10">
         <Offers />
         <Header />
       </div>
