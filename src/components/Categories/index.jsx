@@ -1,4 +1,3 @@
-import React from 'react';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import ComputerIcon from '@mui/icons-material/Computer';
 import WatchIcon from '@mui/icons-material/Watch';
