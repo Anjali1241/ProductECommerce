@@ -30,7 +30,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -45,25 +44,20 @@ function SignUp() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <div>
-        <Container
-          component="main"
-          maxWidth="xs"
-          sx={{
-            border: '2px solid',
-            margin: '5% auto',
-          }}
-          className="bg-gradient-to-t from-gray-500 via-gray-400 to-gray-200"
-        >
+    <ThemeProvider theme={defaultTheme} >
+      <div className='bg-login-bg flex items-center justify-center'>
+        <Container component="main" maxWidth="xs" sx={{
+          border: "2px solid",
+          margin: "5% auto"
+        }} className='bg-gray-200 p-8 rounded-lg shadow-lg '>
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
             }}
+
           >
             <Avatar sx={{ m: 1, bgcolor: 'black' }}>
               <LockOutlinedIcon />
@@ -71,12 +65,7 @@ function SignUp() {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -122,9 +111,7 @@ function SignUp() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
                     label="I agree to the terms and conditions."
                   />
                 </Grid>
@@ -133,13 +120,13 @@ function SignUp() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, backgroundColor: 'black' }}
+                sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
               >
                 Sign Up
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2" sx={{ color: 'black' }}>
+                  <Link href="#" variant="body2" sx={{ color: "black" }}>
                     Already have an account? Sign in
                   </Link>
                 </Grid>

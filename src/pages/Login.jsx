@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -10,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
@@ -28,49 +25,31 @@ function Copyright(props) {
     </Typography>
   );
 }
+
 function Login() {
   const defaultTheme = createTheme();
+
   return (
-    <ThemeProvider
-      theme={defaultTheme}
-      sx={{ backgroundImage: 'linear-gradient(black, white)' }}
-    >
-      <Container
-        component="main"
-        maxWidth="xs"
-        sx={{
-          border: '2px solid',
-          margin: '5% auto',
-        }}
-        className="bg-gradient-to-t from-gray-500 via-gray-400 to-gray-200"
-      >
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'black' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login your account
+    <ThemeProvider theme={defaultTheme}>
+      <div className="bg-login-bg h-screen bg-cover bg-center flex items-center justify-center">
+        <div className="bg-gray-200 w-full max-w-md p-8 rounded-lg shadow-lg">
+          <div className="flex items-center justify-center mb-4">
+            <Avatar className="m-2 bg-black">
+              <LockOutlinedIcon />
+            </Avatar>
+          </div>
+          <Typography component="h1" variant="h5" className="text-center mb-6">
+            Login to your account
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate>
             <TextField
               required
-              autoFocus
               fullWidth
               name="userName"
               label="Username"
               id="userName"
               autoComplete="given-name"
-              sx={{
-                marginBottom: 2,
-              }}
+              sx={{ marginBottom: 2 }}
             />
             <TextField
               name="password"
@@ -80,9 +59,7 @@ function Login() {
               label="Password"
               autoComplete="new-password"
               type="password"
-              sx={{
-                marginBottom: 2,
-              }}
+              sx={{ marginBottom: 2 }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -93,10 +70,12 @@ function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, backgroundColor: 'black' }}
+
             >
               Log In
             </Button>
             <Grid container>
+
               <Grid item xs>
                 <Link href="#" variant="body2" sx={{ color: 'black' }}>
                   Forgot password?
@@ -109,9 +88,9 @@ function Login() {
               </Grid>
             </Grid>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
+          <Copyright sx={{ mt: 8, mb: 4 }} />
+        </div>
+      </div>
     </ThemeProvider>
   );
 }
