@@ -23,6 +23,7 @@ const perks = [
 function Perks() {
   return (
     <>
+    <div className=''>
       <h1 className="mt-16 rounded-b-md rounded-t-md border-l-8 border-l-[#DB4444] pl-2 text-xl text-[#DB4444]">
         Perks
       </h1>
@@ -44,6 +45,7 @@ function Perks() {
             <p className="text-gray-600">{perk.description}</p>
           </div>
         ))}
+      </div>
       </div>
     </>
   );
