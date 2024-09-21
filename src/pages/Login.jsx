@@ -1,8 +1,6 @@
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -10,17 +8,30 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const signUpSchema = Yup.object().shape({
-  userName: Yup.string().required('Username is required'),
+  username: Yup.string().required('Username is required'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'must be of 6 character long'),
 });
 
 function Login() {
+  const navigate = useNavigate();
   const defaultTheme = createTheme();
+
+  const handleLogin = function (values) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (
+      values.username === user.username &&
+      values.password === user.password
+    ) {
+      navigate('/');
+    } else {
+      alert('Invalid username or password');
+    }
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -35,24 +46,27 @@ function Login() {
             Login to your account
           </Typography>
           <Formik
-            initialValues={{ userName: '', password: '' }}
+            initialValues={{ username: '', password: '' }}
             validationSchema={signUpSchema}
+            onSubmit={(values) => {
+              handleLogin(values);
+            }}
           >
             {(formik) => (
               <Box component="form" noValidate onSubmit={formik.handleSubmit}>
                 <TextField
-                  {...formik.getFieldProps('userName')}
+                  {...formik.getFieldProps('username')}
                   error={
-                    formik.touched.userName && Boolean(formik.errors.userName)
+                    formik.touched.username && Boolean(formik.errors.username)
                   }
                   required
                   fullWidth
-                  name="userName"
+                  name="username"
                   label="Username"
-                  id="userName"
+                  id="username"
                   autoComplete="given-name"
                   sx={{ marginBottom: 2 }}
-                  helperText={formik.touched.userName && formik.errors.userName}
+                  helperText={formik.touched.username && formik.errors.username}
                 />
                 <TextField
                   {...formik.getFieldProps('password')}
@@ -68,10 +82,6 @@ function Login() {
                   type="password"
                   sx={{ marginBottom: 2 }}
                   helperText={formik.touched.password && formik.errors.password}
-                />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
                 />
                 <Button
                   type="submit"

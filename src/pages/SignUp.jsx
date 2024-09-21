@@ -13,13 +13,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormHelperText } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 const signUpSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
   lastName: Yup.string().required('Last name is required'),
+  username: Yup.string().required('User name is required'),
   email: Yup.string().email().required('Email id required'),
   password: Yup.string()
     .required('Password is required')
@@ -31,6 +32,12 @@ const signUpSchema = Yup.object().shape({
 });
 
 function SignUp() {
+  const navigate = useNavigate();
+  const handleSubmit = (values) => {
+    localStorage.setItem('user', JSON.stringify(values));
+    navigate('/login');
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <div className="bg-login-bg flex items-center justify-center">
@@ -61,11 +68,13 @@ function SignUp() {
               initialValues={{
                 firstName: '',
                 lastName: '',
+                username: '',
                 email: '',
                 password: '',
                 termsAndCondition: false,
               }}
               validationSchema={signUpSchema}
+              onSubmit={(values) => handleSubmit(values)}
             >
               {(formik) => (
                 <Box
@@ -74,7 +83,6 @@ function SignUp() {
                   onSubmit={formik.handleSubmit}
                   sx={{ mt: 3 }}
                 >
-                  {console.log(formik)}
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -110,6 +118,24 @@ function SignUp() {
                         autoComplete="family-name"
                         helperText={
                           formik.touched.lastName && formik.errors.lastName
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        {...formik.getFieldProps('username')}
+                        error={
+                          formik.touched.username &&
+                          Boolean(formik.errors.username)
+                        }
+                        required
+                        fullWidth
+                        id="username"
+                        label="User Name"
+                        name="username"
+                        autoComplete="family-name"
+                        helperText={
+                          formik.touched.username && formik.errors.username
                         }
                       />
                     </Grid>
@@ -157,16 +183,12 @@ function SignUp() {
                             color="primary"
                             name="termsAndCondition"
                             id="termsAndCondition"
-                            error={
-                              formik.touched.termsAndCondition &&
-                              Boolean(formik.errors.termsAndCondition)
-                            }
                           />
                         }
                         label={
                           <>
                             I agree to the{' '}
-                            <Link to="/terms-and-conditions">
+                            <Link to="/terms-and-conditions" className="underline text-blue-500">
                               Terms and Conditions
                             </Link>
                           </>
