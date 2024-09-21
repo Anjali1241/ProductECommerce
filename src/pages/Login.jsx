@@ -9,6 +9,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { openCloseSnackbar } from '../slices/productSlice';
 
 const signUpSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -19,10 +21,23 @@ const signUpSchema = Yup.object().shape({
 
 function Login() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const defaultTheme = createTheme();
 
   const handleLogin = function (values) {
     const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      dispatch(
+        openCloseSnackbar({
+          open: true,
+          message: 'User not found! Please sign up',
+          severity: 'error',
+          variant: 'filled',
+        }),
+      );
+      return;
+    }
     if (
       values.username === user.username &&
       values.password === user.password
@@ -35,7 +50,7 @@ function Login() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <div className="bg-login-bg flex h-screen items-center justify-center bg-cover bg-center">
+      <div className="flex h-screen items-center justify-center bg-login-bg bg-cover bg-center">
         <div className="w-full max-w-md rounded-lg bg-gray-200 p-8 shadow-lg">
           <div className="mb-4 flex items-center justify-center">
             <Avatar sx={{ bgcolor: 'black' }}>

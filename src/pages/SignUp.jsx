@@ -14,6 +14,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormHelperText } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { openCloseSnackbar } from '../slices/productSlice';
 
 const defaultTheme = createTheme();
 
@@ -33,14 +35,17 @@ const signUpSchema = Yup.object().shape({
 
 function SignUp() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     localStorage.setItem('user', JSON.stringify(values));
+    dispatch(openCloseSnackbar({ open: true, message: 'User created! Time to slay the fashion game!', severity:"success", variant:"filled"}));
     navigate('/login');
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <div className="bg-login-bg flex items-center justify-center">
+      <div className="flex items-center justify-center bg-login-bg">
         <Container
           component="main"
           maxWidth="xs"
@@ -188,7 +193,10 @@ function SignUp() {
                         label={
                           <>
                             I agree to the{' '}
-                            <Link to="/terms-and-conditions" className="underline text-blue-500">
+                            <Link
+                              to="/terms-and-conditions"
+                              className="text-blue-500 underline"
+                            >
                               Terms and Conditions
                             </Link>
                           </>
