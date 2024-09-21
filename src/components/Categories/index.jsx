@@ -53,14 +53,14 @@ function Category() {
 
   return (
     <div>
-      <h1 className="text-[#DB4444] border-l-8 pl-2 mt-16 rounded-t-md rounded-b-md border-l-[#DB4444] text-xl">
+      <h1 className="mt-16 rounded-b-md rounded-t-md border-l-8 border-l-[#DB4444] pl-2 text-xl text-[#DB4444]">
         Categories
       </h1>
 
-      <h1 className="text-3xl font-semibold my-5">Browse By Category</h1>
+      <h1 className="my-5 text-3xl font-semibold">Browse By Category</h1>
 
       <div
-        className="flex w-full space-x-3 overflow-x-scroll scrollbar-hide mt-5"
+        className="scrollbar-hide mt-5 flex w-full space-x-3 overflow-x-scroll"
         style={{ scrollbarWidth: 'none' }}
         {...events}
         ref={ref}

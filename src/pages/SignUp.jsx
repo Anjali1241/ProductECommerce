@@ -14,9 +14,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
+        eCommerce
         eCommerce
       </Link>{' '}
       {new Date().getFullYear()}
@@ -135,4 +141,4 @@ function SignUp() {
     </ThemeProvider>
   );
 }
-export default SignUp
+export default SignUp;
