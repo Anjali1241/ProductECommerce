@@ -6,20 +6,21 @@ import ListItemText from '@mui/material/ListItemText';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../apiFunction/FetchCategories';
+import { selectCategoryName } from '../../slices/globalVariablesSlice';
 
 export default function Sidebar() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.categoriesApi.items);
-  console.log(items);
   const status = useSelector((state) => state.categoriesApi.status);
-  console.log('dfdv', status);
-  const error = useSelector((state) => state.categoriesApi.error);
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    if (status == 'idle') {
+      dispatch(fetchCategories());
+    }
   }, []);
-
-  console.log(items, status, error);
+  const selectCategoryy = (text) => {
+    dispatch(selectCategoryName(text));
+  };
   return (
     <Box
       sx={{
@@ -36,7 +37,11 @@ export default function Sidebar() {
     >
       <List>
         {items?.map((text) => (
-          <ListItem key={text} disablePadding>
+          <ListItem
+            key={text}
+            disablePadding
+            onClick={selectCategoryy.bind(null, text)}
+          >
             <ListItemButton>
               <ListItemText primary={text.toUpperCase()} />
             </ListItemButton>
