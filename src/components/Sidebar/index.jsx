@@ -12,7 +12,9 @@ export default function Sidebar() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.categoriesApi.items);
   const status = useSelector((state) => state.categoriesApi.status);
-
+  const selectCategory = useSelector(
+    (state) => state.selectCategory.selectCategory,
+  );
   useEffect(() => {
     if (status == 'idle') {
       dispatch(fetchCategories());
@@ -41,6 +43,10 @@ export default function Sidebar() {
             key={text}
             disablePadding
             onClick={selectCategoryy.bind(null, text)}
+            sx={{
+              backgroundColor:
+                selectCategory === text ? 'gray' : 'transparent',
+            }}
           >
             <ListItemButton>
               <ListItemText primary={text.toUpperCase()} />

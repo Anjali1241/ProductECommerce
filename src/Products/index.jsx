@@ -9,13 +9,12 @@ function Products() {
     (state) => state.selectCategory.selectCategory,
   );
   const categoryItems = useSelector((state) => state.CategoryProduct.items);
-  console.log('categoryItems', categoryItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchIndividualCategory(selectCategoryName));
   }, [selectCategoryName]);
-  
+
   return (
     <div className="w-full">
       <h1 className="mt-16 rounded-b-md rounded-t-md border-l-8 border-l-[#DB4444] pl-2 text-xl text-[#DB4444]">
