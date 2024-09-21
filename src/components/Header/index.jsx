@@ -6,14 +6,16 @@ import { FaRegUser } from 'react-icons/fa';
 function Header() {
   const menu = ['Home', 'About', 'Contact', 'Sign up'];
   return (
-    <div className="flex items-center justify-between border-b-2 bg-white px-28 p-5 shadow-md">
+    <div className="flex items-center justify-between border-b-2 bg-white p-5 px-28 shadow-md">
       <div>
         <h1 className="text-3xl font-semibold">Exclusive</h1>
       </div>
 
       <div className="flex space-x-12">
         {menu.map((item, index) => (
-          <span key={index}>{item}</span>
+          <span className="cursor-pointer hover:text-[#DB4444]" key={index}>
+            {item}
+          </span>
         ))}
       </div>
 
