@@ -1,5 +1,4 @@
-import React from 'react';
-
+/* eslint-disable react/prop-types */
 function Button({ children, onClick, variant }) {
   return (
     <div

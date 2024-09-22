@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 
 function Base() {
   return (
-    <div>
+    <>
       <div className="sticky top-0 z-10">
         <Offers />
         <Header />
@@ -16,7 +16,7 @@ function Base() {
         <Outlet />
         <Footer />
       </main>
-    </div>
+    </>
   );
 }
 
