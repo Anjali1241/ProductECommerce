@@ -9,7 +9,7 @@ function Wishlist() {
         <Button aria-label="Move all items to bag">Move All to Bag</Button>
       </div>
 
-      <div>
+      <div className="flex flex-wrap gap-5">
         <Products />
       </div>
     </div>
