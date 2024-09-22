@@ -42,7 +42,10 @@ function ProductListItems({ ProductDetail }) {
         {pathname.pathname === '/wishlist' ? (
           <RiDeleteBin6Line className="cursor-pointer text-gray-700" />
         ) : wishListItemId === ProductDetail.id ? (
-          <FaHeart className="cursor-pointer text-pink-500" />
+          <FaHeart
+            className="cursor-pointer text-pink-500"
+            onClick={handleWishlist.bind(null, ProductDetail.id)}
+          />
         ) : (
           <FaRegHeart
             className="cursor-pointer text-pink-500"
