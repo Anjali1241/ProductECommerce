@@ -2,27 +2,37 @@
 import { useLocation } from 'react-router-dom';
 import Button from '../common/Button';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { FaRegHeart } from 'react-icons/fa6';
+import { FaRegHeart, FaHeart } from 'react-icons/fa6'; // Combine FaHeart and FaRegHeart import
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist } from '../slices/productSlice';
+import { useEffect, useState } from 'react';
 
 function ProductListItems({ ProductDetail }) {
+  const [wishListItemId, setWishListItemId] = useState(null);
+
   const pathname = useLocation();
 
   const dispatch = useDispatch();
   const categoryItems = useSelector((state) => state.CategoryProduct.items);
   const wishlist = useSelector((state) => state.products.wishlist);
 
-  const handleWishlist = function (id) {
-    const wishlistItems = categoryItems.find((ele) => {
-      return ele.id === id;
-    });
+  useEffect(() => {
+    const wishlistItem = wishlist.find((ele) => ele.id === ProductDetail.id);
+    if (wishlistItem) {
+      setWishListItemId(wishlistItem.id);
+    } else {
+      setWishListItemId(null);
+    }
+  }, [wishlist, ProductDetail.id]);
 
-    if (wishlist.includes(wishlistItems)) {
-      alert('Item is already exits in wishlist');
+  const handleWishlist = (id) => {
+    const wishlistItem = categoryItems.find((ele) => ele.id === id);
+
+    if (wishlist.some((item) => item.id === wishlistItem.id)) {
+      alert('Item is already in wishlist');
       return;
     }
-    
+
     dispatch(addToWishlist(ProductDetail));
   };
 
@@ -31,15 +41,21 @@ function ProductListItems({ ProductDetail }) {
       <div className="absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2">
         {pathname.pathname === '/wishlist' ? (
           <RiDeleteBin6Line className="cursor-pointer text-gray-700" />
+        ) : wishListItemId === ProductDetail.id ? (
+          <FaHeart className="cursor-pointer text-pink-500" />
         ) : (
           <FaRegHeart
-            className="cursor-pointer text-gray-700"
+            className="cursor-pointer text-pink-500"
             onClick={handleWishlist.bind(null, ProductDetail.id)}
           />
         )}
       </div>
 
-      <img src={ProductDetail?.image} className="h-36 w-full" />
+      <img
+        src={ProductDetail?.image}
+        className="h-36 w-full"
+        alt={ProductDetail?.title}
+      />
       <div className="py-1 text-lg font-bold">{ProductDetail?.title}</div>
       <div className="text-lg font-semibold text-[#DB4444]">
         ${ProductDetail?.price}
