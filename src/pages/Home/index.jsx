@@ -1,11 +1,11 @@
 import Sidebar from '../../components/Sidebar';
-import Hero from '../../components/Hero';
 import Offers from '../../components/Offers';
 import Header from '../../components/Header';
 import Category from '../../components/Categories';
 import Perks from '../../components/Perks';
 import Footer from '../../components/Footer';
 import Products from '../../Products';
+import AllProducts from '../AllProducts';
 
 function HomePage() {
   return (
@@ -16,9 +16,10 @@ function HomePage() {
       </div>
       <main style={{ marginLeft: 250 }}>
         <Sidebar />
-        <Hero />
+        {/* <Hero /> */}
         <Category />
         <Products />
+        <AllProducts/>
         <Perks />
         <Footer />
       </main>
