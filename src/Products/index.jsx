@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 import { useEffect } from 'react';
-import ProductListItems from './ProductListItems';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchIndividualCategory } from '../apiFunction/FetchCategories';
+import AllProduct from './AllProduct';
 
 function Products() {
   const selectCategoryName = useSelector(
@@ -21,9 +21,7 @@ function Products() {
         Products
       </h1>
       <div className="flex flex-wrap">
-        {categoryItems?.map((ele) => (
-          <ProductListItems ProductDetail={ele} />
-        ))}
+        <AllProduct categoryItems={categoryItems} />
       </div>
     </div>
   );

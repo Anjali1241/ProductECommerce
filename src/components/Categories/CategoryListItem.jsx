@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function CategoryListItem({ icon, name }) {
   return (
     <div

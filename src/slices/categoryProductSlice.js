@@ -16,7 +16,6 @@ const initialState = {
         state.status = "pending";
       });
       builder.addCase(fetchIndividualCategory.fulfilled, (state, action) => {
-        console.log(action.payload,"actionpayload")
         state.status = "succeeded";
         state.items = action.payload;
       });

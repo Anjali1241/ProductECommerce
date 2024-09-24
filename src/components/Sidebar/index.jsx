@@ -45,7 +45,7 @@ export default function Sidebar() {
             onClick={selectCategoryy.bind(null, text)}
             sx={{
               backgroundColor:
-                selectCategory === text ? 'gray' : 'transparent',
+                selectCategory === text ? 'rgba(0, 0, 0, 0.08)' : 'transparent',
             }}
           >
             <ListItemButton>
