@@ -23,11 +23,25 @@ export const productSlice = createSlice({
     },
 
     addToWishlist: (state, action) => {
-      state.wishlist.push(action.payload);
+      return {
+        ...state,
+        wishlist: [...state.wishlist, action.payload],
+      };
+    },
+
+    removeFromWishlist: (state, action) => {
+      return {
+        ...state,
+        wishlist: state.wishlist.filter((item) => item.id !== action.payload),
+      };
     },
   },
 });
 
-export const { getAllProduct, openCloseSnackbar, addToWishlist } =
-  productSlice.actions;
+export const {
+  getAllProduct,
+  openCloseSnackbar,
+  addToWishlist,
+  removeFromWishlist,
+} = productSlice.actions;
 export default productSlice.reducer;

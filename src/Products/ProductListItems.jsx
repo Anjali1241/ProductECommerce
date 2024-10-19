@@ -4,7 +4,7 @@ import Button from '../common/Button';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FaRegHeart, FaHeart } from 'react-icons/fa6'; // Combine FaHeart and FaRegHeart import
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishlist } from '../slices/productSlice';
+import { addToWishlist, removeFromWishlist } from '../slices/productSlice';
 import { useEffect, useState } from 'react';
 
 function ProductListItems({ ProductDetail }) {
@@ -28,12 +28,14 @@ function ProductListItems({ ProductDetail }) {
   const handleWishlist = (id) => {
     const wishlistItem = categoryItems.find((ele) => ele.id === id);
 
-    if (wishlist.some((item) => item.id === wishlistItem.id)) {
-      alert('Item is already in wishlist');
-      return;
-    }
+    // check if the item is already in the wishlist
+    const isInWishlist = wishlist.some((item) => item.id === wishlistItem.id);
 
-    dispatch(addToWishlist(ProductDetail));
+    if (isInWishlist) {
+      dispatch(removeFromWishlist(id));
+    } else {
+      dispatch(addToWishlist(ProductDetail));
+    }
   };
 
   return (
