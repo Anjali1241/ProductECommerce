@@ -13,7 +13,7 @@ function Products() {
 
   useEffect(() => {
     dispatch(fetchIndividualCategory(selectCategoryName));
-  }, [selectCategoryName]);
+  }, [dispatch, selectCategoryName]);
 
   return (
     <div className="w-full">
