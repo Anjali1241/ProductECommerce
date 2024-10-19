@@ -38,11 +38,18 @@ function ProductListItems({ ProductDetail }) {
     }
   };
 
+  const removeItemFromWishlist = (id) => {
+    dispatch(removeFromWishlist(id));
+  };
+
   return (
     <div className="relative m-3 h-full min-h-[25rem] w-60 scale-95 transform rounded-lg border-2 border-solid border-gray-200 p-3 transition-transform duration-300 hover:scale-100 hover:shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]">
       <div className="absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2">
         {pathname.pathname === '/wishlist' ? (
-          <RiDeleteBin6Line className="cursor-pointer text-gray-700" />
+          <RiDeleteBin6Line
+            onClick={removeItemFromWishlist.bind(null, ProductDetail.id)}
+            className="cursor-pointer text-gray-700"
+          />
         ) : wishListItemId === ProductDetail.id ? (
           <FaHeart
             className="cursor-pointer text-pink-500"
