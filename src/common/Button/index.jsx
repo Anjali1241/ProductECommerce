@@ -1,9 +1,8 @@
-import React from 'react';
-
-function Button({ children, onClick }) {
+/* eslint-disable react/prop-types */
+function Button({ children, onClick, variant }) {
   return (
     <div
-      className="bg-[#DB4444] inline-block text-white px-4 py-2"
+      className={`inline-block cursor-pointer bg-[#DB4444] px-4 py-2 text-white ${variant}`}
       onClick={onClick}
     >
       {children}

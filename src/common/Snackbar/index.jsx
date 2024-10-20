@@ -42,8 +42,8 @@ function AlertSnackbar({
 AlertSnackbar.propTypes = {
   open: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
-  severity: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  severity: PropTypes.oneOf(['success', 'error', 'warning', 'info', '']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard', '']),
 };
 
 export default AlertSnackbar;

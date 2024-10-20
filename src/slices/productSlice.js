@@ -3,13 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchAllProducts } from '../apiFunction/FetchCategories';
 
 const initialState = {
-  allProduct: [],
   snackbar: {
     open: false,
     message: '',
     severity: '',
     variant: '',
   },
+
+  wishlist: [],
   items: [],
   status: "idle",
   error: null,
@@ -19,12 +20,15 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    getAllProduct: (state, action) => {},
     openCloseSnackbar: (state, action) => {
       state.snackbar.open = action.payload.open;
       state.snackbar.message = action.payload.message;
       state.snackbar.severity = action.payload.severity;
       state.snackbar.variant = action.payload.variant;
+    },
+
+    addToWishlist: (state, action) => {
+      state.wishlist.push(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -43,5 +47,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const { getAllProduct, openCloseSnackbar } = productSlice.actions;
+export const { getAllProduct, openCloseSnackbar, addToWishlist } =
+  productSlice.actions;
 export default productSlice.reducer;

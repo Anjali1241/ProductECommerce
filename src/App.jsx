@@ -5,23 +5,35 @@ import HomePage from './pages/Home';
 import NotFound from './pages/NotFound';
 import AlertSnackbar from './common/Snackbar';
 import { useSelector } from 'react-redux';
+import Base from './common/Base';
+import Wishlist from './pages/Wishlist';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/signup',
-    element: <SignUp />,
-  },
-  {
-    path: '*',
-    element: <NotFound />,
+    element: <Base />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />,
+      },
+      {
+        path: '/wishlist',
+        element: <Wishlist />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+    ],
   },
 ]);
 
@@ -31,7 +43,12 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <AlertSnackbar open={selector.open} message={selector.message} severity={selector.severity} variant={selector.variant}/>
+      <AlertSnackbar
+        open={selector.open}
+        message={selector.message}
+        severity={selector.severity}
+        variant={selector.variant}
+      />
     </>
   );
 }
