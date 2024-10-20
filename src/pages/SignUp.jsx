@@ -14,8 +14,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormHelperText } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openCloseSnackbar } from '../slices/productSlice';
+import { userSignIn } from '../slices/userAuthSlice';
 
 const defaultTheme = createTheme();
 
@@ -35,11 +36,36 @@ const signUpSchema = Yup.object().shape({
 
 function SignUp() {
   const navigate = useNavigate();
+  const userAuth = useSelector((state) => state.userSignIn.userData);
 
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
+    const isUserExist = userAuth.filter(
+      (ele) => ele.email === values.email || ele.username === values.username,
+    );
+
+    if(isUserExist.length > 0) {
+      dispatch(
+        openCloseSnackbar({
+          open: true,
+          message: 'User already exist! Please sign in from another account',
+          severity: 'error',
+          variant: 'filled',
+        }),
+      );
+      return;
+    }
+
     localStorage.setItem('user', JSON.stringify(values));
-    dispatch(openCloseSnackbar({ open: true, message: 'User created! Time to slay the fashion game!', severity:"success", variant:"filled"}));
+    dispatch(
+      openCloseSnackbar({
+        open: true,
+        message: 'User created! Time to slay the fashion game!',
+        severity: 'success',
+        variant: 'filled',
+      }),
+    );
+    dispatch(userSignIn(values));
     navigate('/login');
   };
 

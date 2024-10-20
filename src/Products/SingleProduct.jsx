@@ -3,7 +3,6 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
@@ -27,7 +26,6 @@ export default function SingleProduct({
   const [open, setOpen] = useState(individualProductDetail);
   //   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(ProductDetail);
   return (
     <div className='h-auto'>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}

@@ -11,9 +11,10 @@ import SingleProduct from './SingleProduct';
 function ProductListItems({ ProductDetail }) {
   const [wishListItemId, setWishListItemId] = useState(null);
   const [individualProductDetail, setIndividualProductDetail] = useState(false);
-  const pathname = useLocation();
 
+  const pathname = useLocation();
   const dispatch = useDispatch();
+  
   const categoryItems = useSelector((state) => state.CategoryProduct.items);
   const wishlist = useSelector((state) => state.products.wishlist);
 

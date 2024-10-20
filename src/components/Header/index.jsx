@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 function Header() {
   const wishlistSelector = useSelector((state) => state.products.wishlist);
- 
+
   const menu = ['Home', 'About', 'Contact', 'Sign up'];
   return (
     <div className="flex items-center justify-between border-b-2 bg-white p-5 px-28 shadow-md">
@@ -18,9 +18,11 @@ function Header() {
 
       <div className="flex space-x-12">
         {menu.map((item, index) => (
-          <span className="cursor-pointer hover:text-[#DB4444]" key={index}>
-            {item}
-          </span>
+          <Link key={index} to={'/signup'}>
+            <span className="cursor-pointer hover:text-[#DB4444]">
+              {item}
+            </span>
+          </Link>
         ))}
       </div>
 

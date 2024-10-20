@@ -1,14 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import productReducer from "../src/slices/productSlice";
-import  globalVariablesReducer from "../src/slices/globalVariablesSlice";
-import categoriesReducer from '../src/slices/categoriesSlice'
-import categoryProductReducer from "../src/slices/categoryProductSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import productReducer from '../src/slices/productSlice';
+import globalVariablesReducer from '../src/slices/globalVariablesSlice';
+import categoriesReducer from '../src/slices/categoriesSlice';
+import categoryProductReducer from '../src/slices/categoryProductSlice';
+import userAuthReducer from '../src/slices/userAuthSlice';
 
 export const store = configureStore({
   reducer: {
     products: productReducer,
-    selectCategory:globalVariablesReducer,
-    categoriesApi:categoriesReducer,
-    CategoryProduct:categoryProductReducer
+    selectCategory: globalVariablesReducer,
+    categoriesApi: categoriesReducer,
+    CategoryProduct: categoryProductReducer,
+    userSignIn: userAuthReducer,
   },
 });

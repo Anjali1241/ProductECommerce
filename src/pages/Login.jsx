@@ -21,8 +21,8 @@ const signUpSchema = Yup.object().shape({
 
 function Login() {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   const defaultTheme = createTheme();
 
   const handleLogin = function (values) {
@@ -38,6 +38,7 @@ function Login() {
       );
       return;
     }
+
     if (
       values.username === user.username &&
       values.password === user.password
