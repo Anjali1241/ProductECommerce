@@ -27,7 +27,6 @@ function Header() {
       link: '/signup',
     },
   ];
-  // const menu = ['Home', 'About', 'Contact', 'Sign up'];
   return (
     <div className="flex items-center justify-between border-b-2 bg-white p-5 px-28 shadow-md">
       <div>
@@ -67,8 +66,12 @@ function Header() {
             <FaRegHeart className="text-xl" />
           </Badge>
         </Link>
-        <IoCartOutline />
-        <FaRegUser />
+        <Link to={'/my-cart'}>
+          <IoCartOutline />
+        </Link>
+        <Link to={'/profile'}>
+          <FaRegUser />
+        </Link>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import Button from '../common/Button';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FaRegHeart, FaHeart } from 'react-icons/fa6'; // Combine FaHeart and FaRegHeart import
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishlist } from '../slices/productSlice';
+import { addToWishlist, openCloseSnackbar } from '../slices/productSlice';
 import { useEffect, useState } from 'react';
 import SingleProduct from './SingleProduct';
 
@@ -14,7 +14,7 @@ function ProductListItems({ ProductDetail }) {
 
   const pathname = useLocation();
   const dispatch = useDispatch();
-  
+
   const categoryItems = useSelector((state) => state.CategoryProduct.items);
   const wishlist = useSelector((state) => state.products.wishlist);
 
@@ -31,7 +31,14 @@ function ProductListItems({ ProductDetail }) {
     const wishlistItem = categoryItems.find((ele) => ele.id === id);
 
     if (wishlist.some((item) => item.id === wishlistItem.id)) {
-      alert('Item is already in wishlist');
+      dispatch(
+        openCloseSnackbar({
+          open: true,
+          message: 'Item is already in wishlist',
+          severity: 'error',
+          variant: 'filled',
+        }),
+      );
       return;
     }
 
