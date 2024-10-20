@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openCloseSnackbar } from '../slices/productSlice';
 
 const signUpSchema = Yup.object().shape({
@@ -21,30 +21,28 @@ const signUpSchema = Yup.object().shape({
 
 function Login() {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   const defaultTheme = createTheme();
 
+  const userData = useSelector((state) => state.persistedReducer.userData);
+
   const handleLogin = function (values) {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
+    const isUserExist = userData.find(
+      (ele) => ele.username === values.username,
+    );
+
+    if (isUserExist && isUserExist.password === values.password) {
+      navigate('/');
+    } else {
       dispatch(
         openCloseSnackbar({
           open: true,
-          message: 'User not found! Please sign up',
+          message: 'Invalid Username or Password',
           severity: 'error',
           variant: 'filled',
         }),
       );
-      return;
-    }
-    if (
-      values.username === user.username &&
-      values.password === user.password
-    ) {
-      navigate('/');
-    } else {
-      alert('Invalid username or password');
     }
   };
 
