@@ -7,6 +7,7 @@ import AlertSnackbar from './common/Snackbar';
 import { useSelector } from 'react-redux';
 import Base from './common/Base';
 import Wishlist from './pages/Wishlist';
+import Cart from './components/Cart';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
       {
         path: '*',

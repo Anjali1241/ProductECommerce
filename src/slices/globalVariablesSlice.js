@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectCategory: 'electronics',
+  selectCategory: '',
 };
 
 export const globalVariablesSlice = createSlice({

@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 function Header() {
   const wishlistSelector = useSelector((state) => state.products.wishlist);
- 
+
   const menu = ['Home', 'About', 'Contact', 'Sign up'];
   return (
     <div className="flex items-center justify-between border-b-2 bg-white p-5 px-28 shadow-md">
@@ -47,7 +47,9 @@ function Header() {
             <FaRegHeart className="text-xl" />
           </Badge>
         </Link>
-        <IoCartOutline />
+        <Link to="/cart">
+          <IoCartOutline />
+        </Link>
         <FaRegUser />
       </div>
     </div>

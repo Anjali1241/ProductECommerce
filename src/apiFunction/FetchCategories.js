@@ -15,6 +15,5 @@ export const fetchIndividualCategory = createAsyncThunk("categories/fetchIndivid
 // get all products
 export const fetchAllProducts = createAsyncThunk("AllProducts", async () => {
   const response = await fetch(`https://fakestoreapi.com/products`);
-  console.log("api fetch",response)
     return response.json();
 });
