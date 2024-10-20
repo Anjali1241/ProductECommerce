@@ -36,7 +36,7 @@ const signUpSchema = Yup.object().shape({
 
 function SignUp() {
   const navigate = useNavigate();
-  const userAuth = useSelector((state) => state.userSignIn.userData);
+  const userAuth = useSelector((state) => state.persistedReducer.userData);
 
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
