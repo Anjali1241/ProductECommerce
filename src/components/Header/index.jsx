@@ -66,7 +66,7 @@ function Header() {
             <FaRegHeart className="text-xl" />
           </Badge>
         </Link>
-        <Link to={'/my-cart'}>
+        <Link to={'/cart'}>
           <IoCartOutline />
         </Link>
         <Link to={'/profile'}>
