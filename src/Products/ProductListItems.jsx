@@ -6,10 +6,11 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa6'; // Combine FaHeart and Fa
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist } from '../slices/productSlice';
 import { useEffect, useState } from 'react';
+import SingleProduct from './SingleProduct';
 
 function ProductListItems({ ProductDetail }) {
   const [wishListItemId, setWishListItemId] = useState(null);
-
+  const [individualProductDetail, setIndividualProductDetail] = useState(false);
   const pathname = useLocation();
 
   const dispatch = useDispatch();
@@ -54,20 +55,30 @@ function ProductListItems({ ProductDetail }) {
         )}
       </div>
 
-      <img
-        src={ProductDetail?.image}
-        className="h-36 w-full"
-        alt={ProductDetail?.title}
-      />
-      <div className="py-1 text-lg font-bold">{ProductDetail?.title}</div>
-      <div className="text-lg font-semibold text-[#DB4444]">
-        ${ProductDetail?.price}
-      </div>
-      <div className="mt-2 flex w-full justify-between">
-        <Button className="w-2/2 rounded-md bg-neutral-500 p-2">
-          Add to Cart
-        </Button>
-        <Button className="w-1/2 rounded-md bg-neutral-500 p-1">Buy</Button>
+      <div onClick={() => setIndividualProductDetail(!individualProductDetail)}>
+        <img
+          src={ProductDetail?.image}
+          className="h-36 w-full"
+          alt={ProductDetail?.title}
+        />
+        <div className="truncate py-1 text-lg font-bold">
+          {ProductDetail?.title}
+        </div>
+        <div className="text-lg font-semibold text-[#DB4444]">
+          ${ProductDetail?.price}
+        </div>
+        <div className="mt-2 flex w-full justify-between">
+          <Button className="w-2/2 rounded-md bg-neutral-500 p-2">
+            Add to Cart
+          </Button>
+          <Button className="w-1/2 rounded-md bg-neutral-500 p-1">Buy</Button>
+        </div>
+        {individualProductDetail && (
+          <SingleProduct
+            individualProductDetail={individualProductDetail}
+            ProductDetail={ProductDetail}
+          />
+        )}
       </div>
     </div>
   );
