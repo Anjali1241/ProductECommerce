@@ -10,6 +10,14 @@ import Wishlist from './pages/Wishlist';
 
 const router = createBrowserRouter([
   {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/signup',
+    element: <SignUp />,
+  },
+  {
     path: '/',
     element: <Base />,
     children: [
@@ -20,14 +28,6 @@ const router = createBrowserRouter([
       {
         path: '/wishlist',
         element: <Wishlist />,
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/signup',
-        element: <SignUp />,
       },
       {
         path: '*',
