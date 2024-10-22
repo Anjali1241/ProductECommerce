@@ -4,7 +4,8 @@ import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_Numb
 import clsx from 'clsx';
 
 export default function NumberInputIntroduction() {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(1);
+
   return (
     <NumberInput
       aria-label="Demo number input"
@@ -15,7 +16,8 @@ export default function NumberInputIntroduction() {
   );
 }
 
-const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
+const resolveSlotProps = (fn, args) =>
+  typeof fn === 'function' ? fn(args) : fn;
 
 const NumberInput = React.forwardRef(function NumberInput(props, ref) {
   return (

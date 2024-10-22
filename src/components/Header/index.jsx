@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 function Header() {
   const wishlistSelector = useSelector((state) => state.products.wishlist);
-
+  const cartDetails = useSelector((state) => state.cartInfo.cartInfo);
   const menu = [
     {
       name: 'Home',
@@ -67,7 +67,17 @@ function Header() {
           </Badge>
         </Link>
         <Link to={'/cart'}>
-          <IoCartOutline />
+          <Badge
+            badgeContent={cartDetails.length}
+            color="primary"
+            sx={{
+              '& .MuiBadge-standard': {
+                backgroundColor: '#DB4444',
+              },
+            }}
+          >
+            <IoCartOutline />
+          </Badge>
         </Link>
         <Link to={'/profile'}>
           <FaRegUser />

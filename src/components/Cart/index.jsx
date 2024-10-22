@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import NumberInputIntroduction from './QuantityChecker';
+import { useSelector } from 'react-redux';
 
 function handleClick(event) {
   event.preventDefault();
@@ -19,15 +20,9 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, "$24"),
-  createData('Ice cream sandwich', 237, 9.0, "$37"),
-  createData('Eclair', 262, 16.0, "$24"),
-  createData('Cupcake', 305, 3.7, "$67"),
-  createData('Gingerbread', 356, 16.0, "$49"),
-];
 
 function Cart() {
+  const cartDetails = useSelector((state) => state.cartInfo.cartInfo);
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
@@ -48,20 +43,23 @@ function Cart() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {cartDetails?.map((row) => (
               <TableRow
-                key={row.name}
+                key={row.title}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row" className="w-64">
-                  {row.name}
+                  {row.title}
                 </TableCell>
-                <TableCell align="left" className="w-64">{row.calories}</TableCell>
+                <TableCell align="left" className="w-64">
+                  {row.price}
+                </TableCell>
                 <TableCell align="left" className="w-64">
                   <NumberInputIntroduction />
                 </TableCell>
-                <TableCell align="left" className="w-64">{row.carbs}</TableCell>
-                {/* <TableCell align="right">{row.protein}</TableCell> */}
+                <TableCell align="left" className="w-64">
+                  {row.carbs}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

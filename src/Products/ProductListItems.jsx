@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist, openCloseSnackbar } from '../slices/productSlice';
 import { useEffect, useState } from 'react';
 import SingleProduct from './SingleProduct';
+import {  setCartInfo } from '../slices/cartSlice';
 
 function ProductListItems({ ProductDetail }) {
   const [wishListItemId, setWishListItemId] = useState(null);
@@ -76,7 +77,10 @@ function ProductListItems({ ProductDetail }) {
           ${ProductDetail?.price}
         </div>
         <div className="mt-2 flex w-full justify-between">
-          <Button className="w-2/2 rounded-md bg-neutral-500 p-2">
+          <Button
+            className="w-2/2 rounded-md bg-neutral-500 p-2"
+            onClick={() => dispatch(setCartInfo(ProductDetail))}
+          >
             Add to Cart
           </Button>
           <Button className="w-1/2 rounded-md bg-neutral-500 p-1">Buy</Button>
