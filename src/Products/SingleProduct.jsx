@@ -3,7 +3,6 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
@@ -27,9 +26,9 @@ export default function SingleProduct({
   const [open, setOpen] = useState(individualProductDetail);
   //   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(ProductDetail);
+
   return (
-    <div className='h-auto'>
+    <div className="h-auto">
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         aria-labelledby="transition-modal-title"
@@ -73,10 +72,10 @@ export default function SingleProduct({
                 {ProductDetail.description}
               </Typography>
               <div className="mt-2 flex w-full justify-between">
-                <button className="w-2/2 rounded-md bg-neutral-500 p-4 m-5">
+                <button className="w-2/2 m-5 rounded-md bg-neutral-500 p-4">
                   Add to Cart
                 </button>
-                <button className="w-2/2 ml-3 rounded-md bg-neutral-500 p-4  m-5">
+                <button className="w-2/2 m-5 ml-3 rounded-md bg-neutral-500 p-4">
                   Buy
                 </button>
               </div>

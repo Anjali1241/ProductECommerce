@@ -1,17 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/Button';
 import AllProduct from '../../Products/AllProduct';
 import { Link } from 'react-router-dom';
+import { moveToCart } from '../../slices/productSlice';
 
 function Wishlist() {
+  const dispatch = useDispatch();
   const wishlistSelector = useSelector((state) => state.products.wishlist);
 
   return (
     <div className="max-w-7xl px-8">
       <div className="mx-auto flex w-full items-center justify-between py-4">
-        <div className="text-lg font-semibold">Wishlist (4)</div>
-        <Button aria-label="Move all items to bag">Move All to Bag</Button>
+        <div className="text-lg font-semibold">
+          Wishlist ({wishlistSelector.length})
+        </div>
+        <Button
+          aria-label="Move all items to bag"
+          onClick={() => {
+            dispatch(moveToCart(wishlistSelector));
+          }}
+        >
+          Move All to Bag
+        </Button>
       </div>
 
       <div className="flex flex-wrap gap-5">

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { fetchAllProducts } from '../apiFunction/FetchCategories';
 
 const initialState = {
@@ -12,8 +12,9 @@ const initialState = {
 
   wishlist: [],
   items: [],
-  status: "idle",
+  status: 'idle',
   error: null,
+  cart: [],
 };
 
 export const productSlice = createSlice({
@@ -40,18 +41,22 @@ export const productSlice = createSlice({
         wishlist: state.wishlist.filter((item) => item.id !== action.payload),
       };
     },
+
+    moveToCart: (state, action) => {
+      state.cart = [...state.cart, ...action.payload];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.pending, (state) => {
-      state.status = "pending";
+      state.status = 'pending';
     });
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
-      state.status = "succeeded";
-      console.log(action.payload,"action.payload")
+      state.status = 'succeeded';
+      console.log(action.payload, 'action.payload');
       state.items = action.payload;
     });
     builder.addCase(fetchAllProducts.rejected, (state, action) => {
-      state.status = "rejected";
+      state.status = 'rejected';
       state.error = action.error.message;
     });
   },
@@ -62,5 +67,6 @@ export const {
   openCloseSnackbar,
   addToWishlist,
   removeFromWishlist,
+  moveToCart,
 } = productSlice.actions;
 export default productSlice.reducer;

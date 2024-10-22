@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FaRegHeart, FaHeart } from 'react-icons/fa6'; // Combine FaHeart and FaRegHeart import
@@ -12,6 +12,7 @@ function ProductListItems({ ProductDetail }) {
   const [wishListItemId, setWishListItemId] = useState(null);
   const [individualProductDetail, setIndividualProductDetail] = useState(false);
   const pathname = useLocation();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const categoryItems = useSelector((state) => state.CategoryProduct.items);
@@ -80,7 +81,14 @@ function ProductListItems({ ProductDetail }) {
           <Button className="w-2/2 rounded-md bg-neutral-500 p-2">
             Add to Cart
           </Button>
-          <Button className="w-1/2 rounded-md bg-neutral-500 p-1">Buy</Button>
+          <Button
+            className="w-1/2 rounded-md bg-neutral-500 p-1"
+            onClick={() => {
+              navigate('/checkout');
+            }}
+          >
+            Buy
+          </Button>
         </div>
         {individualProductDetail && (
           <SingleProduct
