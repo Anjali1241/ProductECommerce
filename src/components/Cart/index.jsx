@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import NumberInputIntroduction from './QuantityChecker';
 
 function handleClick(event) {
   event.preventDefault();
@@ -19,11 +20,11 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 159, 6.0, "$24"),
+  createData('Ice cream sandwich', 237, 9.0, "$37"),
+  createData('Eclair', 262, 16.0, "$24"),
+  createData('Cupcake', 305, 3.7, "$67"),
+  createData('Gingerbread', 356, 16.0, "$49"),
 ];
 
 function Cart() {
@@ -36,14 +37,14 @@ function Cart() {
 
         <Typography sx={{ color: 'text.primary' }}>Cart</Typography>
       </Breadcrumbs>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableContainer component={Paper} className="my-10 w-7">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Product (100g serving)</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Quantity&nbsp;(g)</TableCell>
-              <TableCell align="right">Subtotal&nbsp;(g)</TableCell>
+              <TableCell align="left">Product</TableCell>
+              <TableCell align="left">Price</TableCell>
+              <TableCell align="left">Quantity</TableCell>
+              <TableCell align="left">Subtotal</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -52,13 +53,15 @@ function Cart() {
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" className="w-64">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="left" className="w-64">{row.calories}</TableCell>
+                <TableCell align="left" className="w-64">
+                  <NumberInputIntroduction />
+                </TableCell>
+                <TableCell align="left" className="w-64">{row.carbs}</TableCell>
+                {/* <TableCell align="right">{row.protein}</TableCell> */}
               </TableRow>
             ))}
           </TableBody>
