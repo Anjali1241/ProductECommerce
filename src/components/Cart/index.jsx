@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link } from 'react-router-dom';
@@ -20,8 +20,9 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-
 function Cart() {
+  const [value, setValue] = useState();
+  console.log(value)
   const cartDetails = useSelector((state) => state.cartInfo.cartInfo);
   return (
     <div role="presentation" onClick={handleClick}>
@@ -55,7 +56,15 @@ function Cart() {
                   {row.price}
                 </TableCell>
                 <TableCell align="left" className="w-64">
-                  <NumberInputIntroduction />
+                  {/* <NumberInputIntroduction /> */}
+                  <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    min="1"
+                    className="border p-2 text-sm"
+                    value={value}
+                  ></input>
                 </TableCell>
                 <TableCell align="left" className="w-64">
                   {row.carbs}
