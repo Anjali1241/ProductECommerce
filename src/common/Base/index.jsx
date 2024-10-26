@@ -11,8 +11,8 @@ function Base() {
         <Offers />
         <Header />
       </div>
-      <main style={{ marginLeft: 250 }}>
-        <Sidebar />
+      <main style={{ marginLeft: "5%"}}>
+        {/* <Sidebar /> */}
         <Outlet />
         <Footer />
       </main>

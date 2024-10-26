@@ -5,6 +5,8 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import Button from '../common/Button';
+import { Link } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -27,7 +29,7 @@ export default function SingleProduct({
   //   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className='h-auto'>
+    <div className="h-auto">
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         aria-labelledby="transition-modal-title"
@@ -71,12 +73,15 @@ export default function SingleProduct({
                 {ProductDetail.description}
               </Typography>
               <div className="mt-2 flex w-full justify-between">
-                <button className="w-2/2 rounded-md bg-neutral-500 p-4 m-5">
+                <Button className="h-5 rounded-md bg-neutral-500 p-2">
                   Add to Cart
-                </button>
-                <button className="w-2/2 ml-3 rounded-md bg-neutral-500 p-4  m-5">
+                </Button>
+                <Button className="h-5 rounded-md bg-neutral-500 p-2">
+                  <Link to="">Buy</Link>
+                </Button>
+                {/* <button className="w-2/2 m-5 ml-3 rounded-md bg-neutral-500 p-4">
                   Buy
-                </button>
+                </button> */}
               </div>
             </div>
           </Box>

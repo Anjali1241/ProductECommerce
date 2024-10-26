@@ -4,52 +4,28 @@ import WatchIcon from '@mui/icons-material/Watch';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
 import CategoryListItem from './CategoryListItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../../apiFunction/FetchCategories';
+import { selectCategoryName } from '../../slices/globalVariablesSlice';
 
 function Category() {
   const ref = useRef(); // We will use React useRef hook to reference the wrapping div:
   const { events } = useDraggable(ref);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.categoriesApi.items);
+  const status = useSelector((state) => state.categoriesApi.status);
 
-  const categories = [
-    {
-      icon: <PhoneIphoneIcon />,
-      name: 'Phones',
-    },
-    {
-      icon: <ComputerIcon />,
-      name: 'Computers',
-    },
-    {
-      icon: <WatchIcon />,
-      name: 'SmartWatch',
-    },
-    {
-      icon: <CameraAltIcon />,
-      name: 'Camera',
-    },
-    {
-      icon: <HeadphonesIcon />,
-      name: 'Headphones',
-    },
-    {
-      icon: <SportsEsportsIcon />,
-      name: 'Gaming',
-    },
-    {
-      icon: <CameraAltIcon />,
-      name: 'Camera',
-    },
-    {
-      icon: <HeadphonesIcon />,
-      name: 'Headphones',
-    },
-    {
-      icon: <SportsEsportsIcon />,
-      name: 'Gaming',
-    },
-  ];
+  useEffect(() => {
+    if (status == 'idle') {
+      dispatch(fetchCategories());
+    }
+  }, []);
+  const selectCategoryy = (text) => {
+    dispatch(selectCategoryName(text));
+  };
 
   return (
     <div>
@@ -65,13 +41,11 @@ function Category() {
         {...events}
         ref={ref}
       >
-        {categories.map((category) => {
+        {items.map((item, id) => {
           return (
-            <CategoryListItem
-              key={category.name}
-              icon={category.icon}
-              name={category.name}
-            />
+            <div onClick={selectCategoryy.bind(null, item)}>
+              <CategoryListItem key={id} name={item} />
+            </div>
           );
         })}
       </div>

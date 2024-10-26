@@ -16,8 +16,8 @@ function AllProducts() {
         All Products
       </h1>
       <div className="flex flex-wrap">
-        {productsItems?.map((ele) => (
-          <ProductListItems ProductDetail={ele} />
+        {productsItems?.map((product, id) => (
+          <ProductListItems key={id} ProductDetail={product} />
         ))}
       </div>
     </div>

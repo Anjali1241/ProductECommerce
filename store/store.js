@@ -6,6 +6,7 @@ import globalVariablesReducer from '../src/slices/globalVariablesSlice';
 import categoriesReducer from '../src/slices/categoriesSlice';
 import categoryProductReducer from '../src/slices/categoryProductSlice';
 import userAuthReducer from '../src/slices/userAuthSlice';
+import  getCartInfoReducer from '../src/slices/cartSlice';
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +22,7 @@ export const store = configureStore({
     selectCategory: globalVariablesReducer,
     categoriesApi: categoriesReducer,
     CategoryProduct: categoryProductReducer,
+    cartInfo:getCartInfoReducer
   },
   middleware: (getDefaultMiddleWare) =>
     getDefaultMiddleWare({
