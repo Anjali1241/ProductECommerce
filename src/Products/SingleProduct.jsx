@@ -6,6 +6,7 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import Button from '../common/Button';
+import { Link } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -76,7 +77,7 @@ export default function SingleProduct({
                   Add to Cart
                 </Button>
                 <Button className="h-5 rounded-md bg-neutral-500 p-2">
-                  Buy
+                  <Link to="">Buy</Link>
                 </Button>
                 {/* <button className="w-2/2 m-5 ml-3 rounded-md bg-neutral-500 p-4">
                   Buy

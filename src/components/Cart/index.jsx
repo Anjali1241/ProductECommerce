@@ -1,79 +1,125 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link } from 'react-router-dom';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import NumberInputIntroduction from './QuantityChecker';
 import { useSelector } from 'react-redux';
-
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
 
 function Cart() {
-  const [value, setValue] = useState();
-  console.log(value)
   const cartDetails = useSelector((state) => state.cartInfo.cartInfo);
+  const [data, setData] = useState(
+    cartDetails.map((ele) => ({
+      ...ele,
+      quantity: 1,
+      subtotal: ele.price * 1,
+    })),
+  );
+
+  const handleOnChange = (e, id) => {
+    setData((prevData) =>
+      prevData.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: e.target.value,
+              subtotal: item.price * e.target.value,
+            }
+          : item,
+      ),
+    );
+  };
+
+  const columns = useMemo(
+    () => [
+      {
+        header: 'Title',
+        accessorKey: 'title',
+        cell: (props) => <p>{props.getValue()}</p>,
+      },
+      {
+        header: 'Price',
+        accessorKey: 'price',
+        cell: (props) => <p>{props.getValue()}</p>,
+      },
+      {
+        header: 'Quantity',
+        accessorKey: 'Quantity',
+        cell: (props) => (
+          <input
+            type="number"
+            min="1"
+            value={props.row.original.quantity}
+            onChange={(e) => handleOnChange(e, props.row.original.id)}
+            className="w-20 rounded border p-2 text-sm"
+          />
+        ),
+      },
+      {
+        header: 'Subtotal',
+        accessorKey: 'subtotal',
+        cell: (props) => <p>{props.row.original.subtotal.toFixed(2)}</p>,
+      },
+    ],
+    [],
+  );
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
   return (
-    <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
+    <div className="container mx-auto p-4">
+      <Breadcrumbs aria-label="breadcrumb" className="mb-4">
         <Link underline="hover" color="inherit" to="/">
           Home
         </Link>
-
         <Typography sx={{ color: 'text.primary' }}>Cart</Typography>
       </Breadcrumbs>
-      <TableContainer component={Paper} className="my-10 w-7">
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Product</TableCell>
-              <TableCell align="left">Price</TableCell>
-              <TableCell align="left">Quantity</TableCell>
-              <TableCell align="left">Subtotal</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {cartDetails?.map((row) => (
-              <TableRow
-                key={row.title}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row" className="w-64">
-                  {row.title}
-                </TableCell>
-                <TableCell align="left" className="w-64">
-                  {row.price}
-                </TableCell>
-                <TableCell align="left" className="w-64">
-                  {/* <NumberInputIntroduction /> */}
-                  <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min="1"
-                    className="border p-2 text-sm"
-                    value={value}
-                  ></input>
-                </TableCell>
-                <TableCell align="left" className="w-64">
-                  {row.carbs}
-                </TableCell>
-              </TableRow>
+
+      <div className="overflow-x-auto my-10">
+        <table className="min-w-full border border-gray-300 bg-white">
+          <thead className="bg-gray-200">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className="border px-4 py-2 text-left">
+                    {header.column.columnDef.header}
+                  </th>
+                ))}
+              </tr>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className="hover:bg-gray-100">
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="border px-4 py-2">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className='flex justify-between mt-8 items-center'>
+        <h1 className="mt-4 text-lg font-bold">
+          Total Payable Amount: $
+          {data
+            .map((ele) => ele.subtotal)
+            .reduce((acc, curVal) => (acc += curVal), 0)
+            .toFixed(2)}
+        </h1>
+        <button className='bg-[#DB4444] h-10 p-2 rounded-md text-white'>
+          <Link to="">Proceed to Checkout</Link>
+        </button>
+      </div>
     </div>
   );
 }
