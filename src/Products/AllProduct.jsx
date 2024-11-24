@@ -15,6 +15,7 @@ function AllProduct({ categoryItems }) {
           ))}
         </div>
       )}
+      {/* product listing */}
       {categoryItems.map((ele, index) => (
         <ProductListItems key={index} ProductDetail={ele} />
       ))}
